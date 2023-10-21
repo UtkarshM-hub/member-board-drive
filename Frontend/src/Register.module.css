@@ -20,6 +20,12 @@
   height: 80px;
 }
 
+.header_logo_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .tux_Container {
   display: none;
   width: 100%;
@@ -215,6 +221,11 @@ select {
     margin-bottom: 50px;
   }
 
+  .header_logo {
+    position: static;
+    margin-top: 20px;
+  }
+
   .side_tux {
     display: none;
   }
@@ -229,7 +240,7 @@ select {
   }
 
   .form_container {
-    width: 95%;
+    /* width: 95%; */
     box-shadow: 0 0px 5px 0 rgba(255, 255, 255, 0.568);
     margin-bottom: 50px;
   }

@@ -5,7 +5,7 @@ import axios from "axios";
 import swal from "sweetalert2";
 import { InfinitySpin, ThreeDots } from "react-loader-spinner";
 
-const PhotoUploadForm = () => {
+const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -35,10 +35,45 @@ const PhotoUploadForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsLoading(true);
+    // setIsLoading(true);
 
     const { name, email, phone, branch, reason, photoUpload, resumeUpload } =
       formData;
+    console.log(photoUpload.size);
+
+    if (photoUpload.size > 1000000) {
+      swal.fire({
+        title: "Photo size too large!",
+        imageUrl: "https://i.ibb.co/zfrXVzB/large.png",
+        imageHeight: 200,
+        imageWidth: 200,
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "OK",
+        animation: "true",
+        customClass: {
+          popup: "animated fadeInDown faster",
+          confirmButton: "animated bounceIn faster",
+          cancelButton: "animated bounceIn faster",
+        },
+      });
+      return false;
+    } else if (resumeUpload.size > 2000000) {
+      swal.fire({
+        title: "Resume size too large!",
+        imageUrl: "https://i.ibb.co/zfrXVzB/large.png",
+        imageHeight: 200,
+        imageWidth: 200,
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "OK",
+        animation: "true",
+        customClass: {
+          popup: "animated fadeInDown faster",
+          confirmButton: "animated bounceIn faster",
+          cancelButton: "animated bounceIn faster",
+        },
+      });
+      return false;
+    }
 
     const formDataToSend = new FormData();
     formDataToSend.append("name", name);
@@ -159,13 +194,15 @@ const PhotoUploadForm = () => {
 
   return (
     <div>
+      <div className={styles.header_logo_container}>
+        <img
+          className={styles.header_logo}
+          src="https://i.ibb.co/7rTj4MT/white.png"
+          loading="lazy"
+          alt=""
+        />
+      </div>
       <h1>Member Board Application</h1>
-      <img
-        className={styles.header_logo}
-        src="https://i.ibb.co/7rTj4MT/white.png"
-        loading="lazy"
-        alt=""
-      />
 
       <div className={styles.registration_container}>
         <div>
@@ -176,6 +213,13 @@ const PhotoUploadForm = () => {
           ></img>
         </div>
         <div>
+          <div className={styles.tux_container}>
+            <img
+              className={styles.top_tux}
+              loading="lazy"
+              src="https://i.ibb.co/HBDyz7P/tux.png"
+            ></img>
+          </div>
           <div>
             <div className={styles.form_container} id="register">
               <form
@@ -333,4 +377,4 @@ const PhotoUploadForm = () => {
   );
 };
 
-export default PhotoUploadForm;
+export default Register;
