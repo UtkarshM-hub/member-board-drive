@@ -73,11 +73,11 @@ h1 :hover {
   /* transform: scale(1.2) 1s ease; */
 }
 
-form {
+/* form {
   width: 75%;
   color: white;
   padding: 30px;
-}
+} */
 
 .form_container {
   width: 50vw;
@@ -219,8 +219,11 @@ select {
     justify-content: center;
     align-items: center;
     flex-direction: row;
+
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
     margin-bottom: 50px;
-    /* margin-right: 3px; */
   }
 
   .header_logo {
@@ -242,16 +245,14 @@ select {
   .top_tux {
     margin-top: 50px;
     display: block;
-    margin-top: 50px;
   }
 
   .form_container {
     width: 100%;
     margin: 0px;
   }
-
   form {
-    width: 100%;
+    width: 90%;
   }
 
   .inputLabels {
