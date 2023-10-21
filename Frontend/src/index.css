@@ -10,7 +10,14 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: var(--color-background);
+  /* background-color: var(--color-background); */
+  background: rgb(26, 29, 36);
+  background: linear-gradient(
+    0deg,
+    rgba(26, 29, 36, 1) 15%,
+    rgba(77, 65, 58, 0.5) 26%,
+    rgba(26, 29, 36, 1) 36%
+  );
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
