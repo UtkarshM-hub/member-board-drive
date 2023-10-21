@@ -141,32 +141,32 @@ app.listen(port, () => {
     console.log(`Server app listening at ${port}`)
 });
 
-// app.get('/getPhotos', (req, res) => {
-//     var host = req.protocol + "://" + req.get('host') + "/";
-//     var contents = "";
-//     const directoryPath = 'uploads/Photos';
+app.get('/getPhotos', (req, res) => {
+    var host = req.protocol + "://" + req.get('host') + "/";
+    var contents = "";
+    const directoryPath = 'uploads/Photos';
 
-//     fs.readdir(directoryPath, (err, files) => {
-//         if (err) {
-//             console.error('Error reading directory:', err);
-//             return;
-//         }
+    fs.readdir(directoryPath, (err, files) => {
+        if (err) {
+            console.error('Error reading directory:', err);
+            return;
+        }
 
-//         const filePaths = files.map((file) => {
-//             const filePath = path.join(directoryPath, file);
-//             const capitalizedString = filePath.replace(/\\/g, '/').charAt(0).toUpperCase() + filePath.replace(/\\/g, '/').slice(1);
-//             return host + capitalizedString;
-//         });
-//         console.log(filePaths.entries());
-//         res.send(filePaths + "<br>");
-//         files.forEach((file) => {
-//             const filePath = path.join(directoryPath, file);
-//             const stats = fs.statSync(filePath);
-//             if (stats.isFile()) {
-//                 const capitalizedString = filePath.replace(/\\/g, '/').charAt(0).toUpperCase() + filePath.replace(/\\/g, '/').slice(1);
-//                 // console.log("http://localhost:3000/" + capitalizedString);
-//                 contents = contents + "http://localhost:3000/" + capitalizedString + "<br>";
-//             }
-//         });
-//     });
-// });
+        const filePaths = files.map((file) => {
+            const filePath = path.join(directoryPath, file);
+            const capitalizedString = filePath.replace(/\\/g, '/').charAt(0).toUpperCase() + filePath.replace(/\\/g, '/').slice(1);
+            return host + capitalizedString;
+        });
+        console.log(filePaths.entries());
+        res.send(filePaths + "<br>");
+        files.forEach((file) => {
+            const filePath = path.join(directoryPath, file);
+            const stats = fs.statSync(filePath);
+            if (stats.isFile()) {
+                const capitalizedString = filePath.replace(/\\/g, '/').charAt(0).toUpperCase() + filePath.replace(/\\/g, '/').slice(1);
+                // console.log("http://localhost:3000/" + capitalizedString);
+                contents = contents + host + capitalizedString + "<br>";
+            }
+        });
+    });
+});
