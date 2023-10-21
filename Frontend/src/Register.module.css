@@ -50,6 +50,7 @@
   width: 65vw;
   transition: transform 0.3s ease;
   transform: scale(1);
+  margin-bottom: 50px;
 }
 
 .top_tux:hover {
@@ -233,12 +234,17 @@ select {
   }
 
   .tux_Container {
-    display: inline-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
   }
 
   .top_tux {
     margin-top: 50px;
     display: inline-flex;
+    margin-top: 50px;
   }
 
   .form_container {
