@@ -27,12 +27,11 @@ const PhotoUploadForm = () => {
     });
   };
 
-  const data_API = " http://localhost:3000/createUser";
-  const upload_API = "http://localhost:3000/upload";
+  // const data_API = " http://localhost:3000/createUser";
+  // const upload_API = "http://localhost:3000/upload";
 
-  // const data_API =
-  //   " https://member-board-drive-backend.onrender.com/createUser";
-  // const upload_API = "https://member-board-drive-backend.onrender.com/upload";
+  const data_API = "https://member-board-drive-backend.onrender.com/createUser";
+  const upload_API = "https://member-board-drive-backend.onrender.com/upload";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
