@@ -19,7 +19,7 @@
 .footer {
   display: flex;
   flex-direction: row;
-  height: 15vh;
+  height: min-content;
   background-color: var(--color-primary);
   font-family: "poppins", sans-serif !important;
   border-radius: 1em;

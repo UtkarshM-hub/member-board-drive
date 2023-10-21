@@ -219,6 +219,8 @@ select {
     align-items: center;
     flex-direction: column;
     margin-bottom: 50px;
+    margin-left: 3px;
+    margin-right: 3px;
   }
 
   .header_logo {
@@ -240,7 +242,7 @@ select {
   }
 
   .form_container {
-    /* width: 95%; */
+    width: 95%;
     box-shadow: 0 0px 5px 0 rgba(255, 255, 255, 0.568);
     margin-bottom: 50px;
   }
