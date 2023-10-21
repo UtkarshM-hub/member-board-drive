@@ -26,7 +26,7 @@
   justify-content: center;
 }
 
-.tux_Container {
+.tuxy_container {
   display: none;
   width: 100%;
   display: flex;
@@ -233,17 +233,16 @@ select {
     display: none;
   }
 
-  .tux_Container {
+  .tuxy_container {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
     width: 100%;
   }
 
   .top_tux {
     margin-top: 50px;
-    display: inline-flex;
+    display: block;
     margin-top: 50px;
   }
 

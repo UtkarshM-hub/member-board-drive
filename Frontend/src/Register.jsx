@@ -213,13 +213,14 @@ const Register = () => {
           ></img>
         </div>
         <div>
-          <div className={styles.tux_container}>
+          <div className={styles.tuxy_container}>
             <img
               className={styles.top_tux}
               loading="lazy"
               src="https://i.ibb.co/HBDyz7P/tux.png"
             ></img>
           </div>
+
           <div>
             <div className={styles.form_container} id="register">
               <form
