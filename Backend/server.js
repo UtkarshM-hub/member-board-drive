@@ -52,7 +52,7 @@ const storage = multer.diskStorage({
         let profileURL = '';
         let resumeURL = '';
 
-        const host = req.protocol + "://" + req.get('host') + "/Uploads/";
+        const host = "https://" + req.get('host') + "/Uploads/";
 
         if (extension === ".pdf") {
             const fileName = date + req.body['name'] + "-Resume.pdf";
