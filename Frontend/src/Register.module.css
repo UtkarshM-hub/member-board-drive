@@ -251,6 +251,7 @@ select {
     width: 95%;
     box-shadow: 0 0px 5px 0 rgba(255, 255, 255, 0.568);
     margin-bottom: 50px;
+    margin-left: 10px;
   }
 
   form {

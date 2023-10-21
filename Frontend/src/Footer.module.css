@@ -19,7 +19,7 @@
 .footer {
   display: flex;
   flex-direction: row;
-  height: min-content;
+  height: 15vh;
   background-color: var(--color-primary);
   font-family: "poppins", sans-serif !important;
   border-radius: 1em;
@@ -128,6 +128,7 @@
 
 .copyright2 {
   display: none;
+  color: rgb(59, 59, 59);
 }
 
 @media only screen and (max-width: 768px) {
@@ -174,7 +175,7 @@
     flex-direction: column;
     gap: 0.5rem;
     padding: 1rem 0.5rem;
-    height: 35vh;
+    height: min-content;
   }
 
   .wluglogo {
