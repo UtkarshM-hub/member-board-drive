@@ -1,6 +1,6 @@
 .registration_container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   flex-direction: row;
   margin-bottom: 100px;
@@ -11,6 +11,7 @@
   backdrop-filter: blur(10px);
   background: rgba(216, 180, 158, 0.05);
   background-color: rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
 }
 
 .header_logo {
@@ -39,6 +40,7 @@
   width: 450px;
   transition: transform 0.3s ease;
   transform: scale(1);
+  margin-left: 50px;
 }
 
 .side_tux:hover {
@@ -73,11 +75,11 @@ h1 :hover {
   /* transform: scale(1.2) 1s ease; */
 }
 
-/* form {
+form {
   width: 75%;
   color: white;
-  padding: 30px;
-} */
+  /* padding: 30px; */
+}
 
 .form_container {
   width: 50vw;
@@ -148,9 +150,9 @@ input:focus {
 input[type="file"] {
   background-color: transparent;
   color: white;
-  z-index: -1;
   font-size: 17px;
   color: #b8b8b8;
+  width: 100%;
 }
 
 input::file-selector-button {
@@ -251,7 +253,7 @@ select {
     margin: 0px;
   }
   form {
-    width: 90%;
+    width: 100%;
   }
 
   .inputLabels {
