@@ -241,10 +241,10 @@ const PhotoUploadForm = () => {
                     <option value="" disabled defaultValue hidden>
                       Select your option
                     </option>
-                    <option value="Computer_Science_Engineering">
+                    <option value="Computer Science Engineering">
                       Computer Science Engineering
                     </option>
-                    <option value="Information_Technology">
+                    <option value="Information Technology">
                       Information Technology
                     </option>
                     <option value="Electronics">Electronics</option>
