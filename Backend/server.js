@@ -138,7 +138,7 @@ app.post("/upload", upload.fields([{ name: 'photoUpload' }, { name: 'resumeUploa
 
 
 app.listen(port, () => {
-    console.log(`Server started at http://localhost:${port}`);
+    console.log(`Server app listening at ${port}`)
 });
 
 // app.get('/getPhotos', (req, res) => {
