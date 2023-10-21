@@ -1,0 +1,232 @@
+.registration_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 100px;
+}
+
+@keyframes moveRightLeft {
+  0%,
+  100% {
+    transform: translateX(-10px) scale(1);
+  }
+
+  50% {
+    transform: translateX(10px) scale(1.02); /* Move to the right and increase size */
+  }
+}
+
+.tux_Container {
+  display: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.side_tux {
+  display: inline;
+  width: 450px;
+  animation: moveRightLeft 5s linear infinite;
+}
+
+.top_tux {
+  display: none;
+  width: 65vw;
+  animation: moveRightLeft 5s linear infinite;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-family: "Nunito", sans-serif;
+  margin: 20px 0px;
+  font-size: 3rem;
+  color: var(--color-text);
+  text-shadow: 0px 0px 5px rgb(0, 0, 0);
+}
+
+form {
+  width: 75%;
+  color: white;
+  padding: 30px;
+}
+
+.form_container {
+  width: 50vw;
+  /* margin: 0px 100px; */
+  /* padding: 0 auto; */
+  position: relative;
+  display: flex;
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap-reverse;
+  backdrop-filter: blur(3px);
+  /* border: 2px solid rgba(255, 170, 0, 0.56); */
+  border: 2px solid var(--color-primary);
+  border-radius: 10px;
+  /* background-color: hsla(0, 0%, 0%, 0.1); */
+}
+
+.inputLabels {
+  font-weight: 600;
+  font-size: 1rem;
+  text-shadow: 1px 1px 5px #3b3b3b;
+  color: var(--color-primary);
+}
+
+select.mySelectArrow {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 22px;
+  cursor: pointer;
+  background-image: linear-gradient(
+      45deg,
+      transparent 50%,
+      var(--color-primary) 50%,
+      var(--color-background) 100%
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-background) 0%,
+      var(--color-primary) 50%,
+      transparent 50%
+    );
+  background-position: calc(100% - 20px) center, calc(100% - 10px) center;
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+}
+
+::placeholder {
+  color: var(--color-text);
+  opacity: 0.4; /* Firefox */
+}
+
+input,
+select {
+  color: var(--color-text);
+  width: 94%;
+  margin: 8px 0 12px 0;
+  display: block;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem !important;
+  height: 2rem !important;
+  padding: 0.5rem 0 0.5rem 0;
+  /* background-color: #ecf0f3; */
+  background-color: var(--color-secondary);
+}
+
+input[type="file"] {
+  background-color: transparent;
+  color: white;
+  z-index: -1;
+  font-size: 17px;
+  color: #b8b8b8;
+}
+
+input::file-selector-button {
+  color: var(--color-text);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: var(--color-primary);
+  color: black;
+}
+
+input:-webkit-autofill::first-line {
+  font-size: 1rem !important;
+  color: #000000 !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #000000;
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: inset 0 0 50px 50px #ecf0f3;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  padding-left: 3%;
+  padding-right: 3%;
+  caret-color: #000000;
+}
+
+.submitButton {
+  padding: 1rem 0;
+}
+
+input[type="submit"] {
+  width: 100%;
+  height: 3rem !important;
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  font-weight: 600;
+  font-size: 1.2rem !important;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+select {
+  height: 3rem !important;
+  padding: 0.5rem 0.8rem !important;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .registration_container {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .side_tux {
+    display: none;
+  }
+
+  .tux_Container {
+    display: inline-flex;
+  }
+
+  .top_tux {
+    display: inline-flex;
+  }
+
+  .form_container {
+    width: 95%;
+    box-shadow: 0 0px 5px 0 rgba(255, 255, 255, 0.568);
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .inputLabels {
+    font-size: 1rem;
+  }
+}
+
+/* input:invalid {
+  border: 2px solid red;
+} */
+input:invalid + span {
+  color: red;
+  font-weight: bold;
+}
