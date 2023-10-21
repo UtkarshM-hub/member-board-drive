@@ -54,7 +54,6 @@ const storage = multer.diskStorage({
 
         const host = req.protocol + "://" + req.get('host') + "/Uploads/";
 
-
         if (extension === ".pdf") {
             const fileName = date + req.body['name'] + "-Resume.pdf";
             resumeURL = host + "Resumes/" + fileName.replace(/ /g, "_");
@@ -62,7 +61,7 @@ const storage = multer.diskStorage({
                 { _id: req.body.id },
                 { resumeURL: resumeURL },
             );
-            return cb(null, fileName);
+            return cb(null, fileName.replace(/ /g, "_"));
         } else {
             const fileName = date + req.body['name'] + "-Photo" + extension;
             profileURL = host + "Photos/" + fileName.replace(/ /g, "_");
@@ -70,7 +69,7 @@ const storage = multer.diskStorage({
                 { _id: req.body.id },
                 { profileURL: profileURL },
             );
-            return cb(null, fileName);
+            return cb(null, fileName.replace(/ /g, "_"));
         }
     }
 });
