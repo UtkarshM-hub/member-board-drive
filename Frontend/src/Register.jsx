@@ -177,7 +177,6 @@ const PhotoUploadForm = () => {
           ></img>
         </div>
         <div>
-          <div className={styles.tux_Container}>.</div>
           <div>
             <div className={styles.form_container} id="register">
               <form
