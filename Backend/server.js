@@ -9,15 +9,23 @@ import user from './user.js';
 import sendEmail from './email.js';
 import emailMessage from './emailMessage.js';
 import moment from 'moment';
+import { fileURLToPath } from "url";
+import { dirname } from 'path';
+import path from 'path';
+import fs from 'fs';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 dotenv.config();
 
 connectMongoDB();
 
-
-
 const app = express();
 const port = 3000;
+
+app.use('/Uploads', express.static(__dirname + '/uploads'));
+
+// app.use(express.static(directoryToServe));
 
 const corsOptions = {
     origin: "*",
@@ -36,16 +44,33 @@ const storage = multer.diskStorage({
         } else {
             return cb(null, "./uploads/Photos");
         }
-    }, filename: function (req, file, cb) {
+    }, filename: async function (req, file, cb) {
         const extension = file.originalname.slice(-4);
 
         console.log("File Uploaded");
-        const date = moment().format(' HH-mm-ss_D-M-YYYY,') + " ";
+        const date = moment().format('HH-mm-ss_D-M-YYYY');
+        let profileURL = '';
+        let resumeURL = '';
+
+        const host = req.protocol + "://" + req.get('host') + "/Uploads/";
+
 
         if (extension === ".pdf") {
-            return cb(null, date + req.body['name'] + " - Resume.pdf");
+            const fileName = date + req.body['name'] + "-Resume.pdf";
+            resumeURL = host + "Resumes/" + fileName.replace(/ /g, "_");
+            await user.updateOne(
+                { _id: req.body.id },
+                { resumeURL: resumeURL },
+            );
+            return cb(null, fileName);
         } else {
-            return cb(null, date + req.body['name'] + " - Photo" + extension);
+            const fileName = date + req.body['name'] + "-Photo" + extension;
+            profileURL = host + "Photos/" + fileName.replace(/ /g, "_");
+            await user.updateOne(
+                { _id: req.body.id },
+                { profileURL: profileURL },
+            );
+            return cb(null, fileName);
         }
     }
 });
@@ -63,7 +88,7 @@ app.get("/count", async (req, res) => {
 });
 
 app.post("/createUser", async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
 
     try {
         const existing = await user.findOne({ email: req.body.email });
@@ -86,6 +111,7 @@ app.post("/createUser", async (req, res) => {
         });
 
         const postdata = await User.save();
+        // console.log(postdata._id.toString());
 
         try {
             sendEmail(User.email, "Your Registration was successfull!!", emailMessage());
@@ -98,7 +124,7 @@ app.post("/createUser", async (req, res) => {
             .json({
                 success: true,
                 message: "User Registered Successfully",
-                postdata,
+                id: postdata._id.toString(),
             });
     } catch (error) {
         console.log(error);
@@ -106,8 +132,7 @@ app.post("/createUser", async (req, res) => {
     }
 });
 
-app.post("/upload", upload.fields([{ name: 'photoUpload' }, { name: 'resumeUpload' }]), (req, res) => {
-    console.log(req.body);
+app.post("/upload", upload.fields([{ name: 'photoUpload' }, { name: 'resumeUpload' }]), async (req, res) => {
     res.sendStatus(201);
 });
 
@@ -115,3 +140,33 @@ app.post("/upload", upload.fields([{ name: 'photoUpload' }, { name: 'resumeUploa
 app.listen(port, () => {
     console.log(`Server started at http://localhost:${port}`);
 });
+
+// app.get('/getPhotos', (req, res) => {
+//     var host = req.protocol + "://" + req.get('host') + "/";
+//     var contents = "";
+//     const directoryPath = 'uploads/Photos';
+
+//     fs.readdir(directoryPath, (err, files) => {
+//         if (err) {
+//             console.error('Error reading directory:', err);
+//             return;
+//         }
+
+//         const filePaths = files.map((file) => {
+//             const filePath = path.join(directoryPath, file);
+//             const capitalizedString = filePath.replace(/\\/g, '/').charAt(0).toUpperCase() + filePath.replace(/\\/g, '/').slice(1);
+//             return host + capitalizedString;
+//         });
+//         console.log(filePaths.entries());
+//         res.send(filePaths + "<br>");
+//         files.forEach((file) => {
+//             const filePath = path.join(directoryPath, file);
+//             const stats = fs.statSync(filePath);
+//             if (stats.isFile()) {
+//                 const capitalizedString = filePath.replace(/\\/g, '/').charAt(0).toUpperCase() + filePath.replace(/\\/g, '/').slice(1);
+//                 // console.log("http://localhost:3000/" + capitalizedString);
+//                 contents = contents + "http://localhost:3000/" + capitalizedString + "<br>";
+//             }
+//         });
+//     });
+// });

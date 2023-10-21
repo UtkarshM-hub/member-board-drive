@@ -4,17 +4,20 @@
   align-items: center;
   flex-direction: row;
   margin-bottom: 100px;
+  border: 2px solid var(--color-primary);
+  border-radius: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+  backdrop-filter: blur(10px);
+  background: rgba(216, 180, 158, 0.05);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
-@keyframes moveRightLeft {
-  0%,
-  100% {
-    transform: translateX(-10px) scale(1);
-  }
-
-  50% {
-    transform: translateX(10px) scale(1.02); /* Move to the right and increase size */
-  }
+.header_logo {
+  position: absolute;
+  top: 20px;
+  right: 60px;
+  height: 80px;
 }
 
 .tux_Container {
@@ -28,24 +31,39 @@
 .side_tux {
   display: inline;
   width: 450px;
-  animation: moveRightLeft 5s linear infinite;
+  transition: transform 0.3s ease;
+  transform: scale(1);
+}
+
+.side_tux:hover {
+  transform: scale(1.1);
 }
 
 .top_tux {
   display: none;
   width: 65vw;
-  animation: moveRightLeft 5s linear infinite;
+  transition: transform 0.3s ease;
+  transform: scale(1);
 }
 
-.title {
+.top_tux:hover {
+  transform: scale(1.1);
+}
+
+h1 {
   width: 100%;
   text-align: center;
   font-weight: bold;
   font-family: "Nunito", sans-serif;
   margin: 20px 0px;
-  font-size: 3rem;
-  color: var(--color-text);
+  font-size: 3.5rem;
+  color: var(--color-primary);
   text-shadow: 0px 0px 5px rgb(0, 0, 0);
+}
+
+h1 :hover {
+  display: none;
+  /* transform: scale(1.2) 1s ease; */
 }
 
 form {
@@ -56,19 +74,12 @@ form {
 
 .form_container {
   width: 50vw;
-  /* margin: 0px 100px; */
-  /* padding: 0 auto; */
   position: relative;
   display: flex;
   z-index: 10;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap-reverse;
-  backdrop-filter: blur(3px);
-  /* border: 2px solid rgba(255, 170, 0, 0.56); */
-  border: 2px solid var(--color-primary);
-  border-radius: 10px;
-  /* background-color: hsla(0, 0%, 0%, 0.1); */
 }
 
 .inputLabels {
@@ -114,13 +125,17 @@ select {
   width: 94%;
   margin: 8px 0 12px 0;
   display: block;
-  border: none;
   border-radius: 10px;
   font-size: 1rem !important;
   height: 2rem !important;
   padding: 0.5rem 0 0.5rem 0;
   /* background-color: #ecf0f3; */
   background-color: var(--color-secondary);
+  border: 0.1px solid rgba(216, 180, 158, 0.2);
+  outline: none;
+}
+input:focus {
+  border: 2px solid #555;
 }
 
 input[type="file"] {
@@ -137,6 +152,8 @@ input::file-selector-button {
   border: none;
   border-radius: 10px;
   margin-right: 20px;
+  margin-top: -4px;
+  margin-left: 4px;
 }
 
 input[type="file"]::file-selector-button:hover {
@@ -164,7 +181,7 @@ input[type="email"],
 input[type="tel"] {
   padding-left: 3%;
   padding-right: 3%;
-  caret-color: #000000;
+  caret-color: var(--color-primary);
 }
 
 .submitButton {
@@ -195,6 +212,7 @@ select {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 50px;
   }
 
   .side_tux {
@@ -206,12 +224,14 @@ select {
   }
 
   .top_tux {
+    margin-top: 50px;
     display: inline-flex;
   }
 
   .form_container {
     width: 95%;
     box-shadow: 0 0px 5px 0 rgba(255, 255, 255, 0.568);
+    margin-bottom: 50px;
   }
 
   form {
@@ -223,9 +243,6 @@ select {
   }
 }
 
-/* input:invalid {
-  border: 2px solid red;
-} */
 input:invalid + span {
   color: red;
   font-weight: bold;

@@ -25,6 +25,14 @@ const empschema = new mongoose.Schema({
     yearOfStudy: {
         type: String,
     },
+    profileURL: {
+        type: String,
+        default: null
+    },
+    resumeURL: {
+        type: String,
+        default: null
+    }
 });
 
 export default mongoose.model('FE_MemberBoard_2023-24', empschema);

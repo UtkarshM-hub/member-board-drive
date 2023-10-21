@@ -1,0 +1,257 @@
+/* 
+
+.footer {
+    display: flex;
+    height: auto;
+} */
+
+.imgg img {
+  display: block;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+  margin-bottom: -6%;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  height: 15vh;
+  background-color: var(--color-primary);
+  font-family: "poppins", sans-serif !important;
+  border-radius: 1em;
+  position: relative;
+  z-index: 2;
+  border: 1px solid #8d7c60;
+  box-shadow: 0 8px 20px 0 #383126;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem 1rem;
+  overflow: hidden;
+}
+
+.footerbg {
+  position: relative;
+  z-index: inherit;
+  padding: 0.8em 0.8em;
+}
+
+.wluglogo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2rem;
+}
+
+.wluglogo p {
+  font-size: 0.7rem;
+  align-self: center;
+  color: rgb(59, 59, 59);
+}
+
+.wluglogo img {
+  height: 5rem;
+  margin-right: 2rem;
+}
+
+.smedialinks {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 2rem;
+  height: 100%;
+}
+
+.padding1rem {
+  padding: 0.5rem 1rem;
+}
+
+.stay_tuned {
+  color: rgb(59, 59, 59);
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.navli {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  font-family: "poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  height: 100%;
+  gap: 0.5em;
+}
+
+.policies {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  gap: 0.5em;
+  padding-right: 2rem;
+}
+
+.navli a,
+.policies a {
+  text-decoration: none;
+  color: rgb(83, 78, 78);
+  display: flexbox;
+}
+
+/* text-shadow: 0.5px 0.5px 0.1px #000000; */
+
+.navli a:hover,
+.policies a:hover,
+.ics a:hover {
+  color: rgb(59, 59, 59);
+  text-decoration: none;
+}
+
+.ics {
+  display: flex;
+  flex-direction: row;
+  gap: 0.8em;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.copyright2 {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .imgg img {
+    display: block;
+    bottom: 0;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 5%;
+    height: auto;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0%;
+    overflow: hidden;
+  }
+
+  .ics,
+  .stay_tuned {
+    margin: 0.5rem;
+  }
+
+  .dash {
+    display: none;
+  }
+
+  .smedialinks,
+  .navli {
+    width: 100%;
+    gap: 0.5em;
+    align-items: center;
+    font-size: 1rem;
+  }
+
+  .policies {
+    width: 100%;
+    gap: 0.5em;
+    align-items: center;
+    font-size: 0.7rem;
+    padding: 0.5rem;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0.5rem;
+    height: 35vh;
+  }
+
+  .wluglogo {
+    display: none;
+  }
+
+  .stay_tuned {
+    font-size: 1.4rem;
+  }
+
+  .copyright2 {
+    display: block;
+  }
+
+  .copyright2 p {
+    font-size: 0.5rem !important;
+  }
+}
+
+/* 
+@media only screen and  only screen and (max-width: 680px) {
+    .footer {
+        justify-content: space-between;
+        padding: 4rem 3rem;
+    }
+
+    .logo-icon-container {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .wluglogo {
+        display: none;
+    }
+
+    .navigation {
+        align-items: flex-end;
+        width: 100%;
+    }
+
+    .navli {
+        justify-content: flex-end;
+        margin-bottom: 1rem;
+        gap: 1.5em;
+    }
+
+    .policies {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+}
+
+@media only screen and  only screen and (max-width: 400px) {
+    .footer {
+        padding: 4rem 2rem;
+    }
+
+    .navli {
+        font-size: 1.05rem;
+        justify-content: center;
+    }
+
+    .navigation {
+        align-items: center;
+    }
+
+    .stay_tuned {
+        font-size: 1.3rem;
+    }
+
+    .policies {
+        font-size: 0.95rem;
+    }
+}
+
+@media only screen and  only screen and (max-width: 320px) {
+    .navli {
+        gap: 1em;
+    }
+} */

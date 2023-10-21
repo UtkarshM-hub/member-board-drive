@@ -4,8 +4,6 @@ import styles from "./Register.module.css";
 import axios from "axios";
 import swal from "sweetalert2";
 import { InfinitySpin, ThreeDots } from "react-loader-spinner";
-import Tux from "./assets/tux.png";
-// import Tux from "./assets/tux_gif.gif";
 
 const PhotoUploadForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,12 +27,12 @@ const PhotoUploadForm = () => {
     });
   };
 
-  // const data_API = " http://localhost:3000/createUser";
-  // const upload_API = "http://localhost:3000/upload";
+  const data_API = " http://localhost:3000/createUser";
+  const upload_API = "http://localhost:3000/upload";
 
-  const data_API =
-    " https://member-board-drive-backend.onrender.com/createUser";
-  const upload_API = "https://member-board-drive-backend.onrender.com/upload";
+  // const data_API =
+  //   " https://member-board-drive-backend.onrender.com/createUser";
+  // const upload_API = "https://member-board-drive-backend.onrender.com/upload";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -63,6 +61,7 @@ const PhotoUploadForm = () => {
 
       if (data_Response.status === 201) {
         try {
+          formDataToSend.append("id", data_Response.data.id.toString());
           formDataToSend.append("photoUpload", photoUpload);
           formDataToSend.append("resumeUpload", resumeUpload);
 
@@ -73,6 +72,7 @@ const PhotoUploadForm = () => {
           });
 
           if (upload_Response.status === 201) {
+            handleReset(event);
             swal.fire({
               title: "Registered Successfully!! Check email for confirmation.",
               imageHeight: 200,
@@ -153,166 +153,181 @@ const PhotoUploadForm = () => {
     }
   };
 
+  const handleReset = (event) => {
+    event.preventDefault();
+    event.target.reset();
+  };
+
   return (
-    <div className={styles.registration_container}>
-      <div>
-        <img className={styles.side_tux} src={Tux}></img>
-      </div>
-      <div>
-        <div className={styles.title}>Register Here</div>
-        {/*  */}
-        <div className={styles.tux_Container}>
-          <img className={styles.top_tux} src={Tux}></img>
+    <div>
+      <h1>Member Board Application</h1>
+      <img
+        className={styles.header_logo}
+        src="https://i.ibb.co/7rTj4MT/white.png"
+        loading="lazy"
+        alt=""
+      />
+
+      <div className={styles.registration_container}>
+        <div>
+          <img
+            className={styles.side_tux}
+            loading="lazy"
+            src="https://i.ibb.co/HBDyz7P/tux.png"
+          ></img>
         </div>
         <div>
-          <div className={styles.form_container} id="register">
-            <form
-              className={styles.form}
-              onSubmit={handleSubmit}
-              encType="multipart/form-data"
-              method="post"
-            >
-              <label htmlFor="name" className={styles.inputLabels}>
-                {" "}
-                Name{" "}
-              </label>
-              <input
-                required={true}
-                placeholder="Your Name"
-                name="name"
-                id="name"
-                type="text"
-                onChange={handleChange}
-              />
-              <label htmlFor="email" className={styles.inputLabels}>
-                {" "}
-                Email ID{" "}
-              </label>
-              <input
-                required={true}
-                placeholder="Your Email"
-                name="email"
-                id="email"
-                type="email"
-                onChange={handleChange}
-              />
-              <label htmlFor="phone" className={styles.inputLabels}>
-                {" "}
-                Phone Number{" "}
-              </label>
-              <input
-                required={true}
-                placeholder="Your Phone Number"
-                minLength={10}
-                maxLength={10}
-                name="phone"
-                id="phone"
-                type="tel"
-                onChange={handleChange}
-              />
-
-              <label htmlFor="branch" className={styles.inputLabels}>
-                {" "}
-                Branch{" "}
-              </label>
-              <br />
-
-              <div className={styles.selectdropdown}>
-                <select
-                  id="branch"
-                  name="branch"
+          <div className={styles.tux_Container}>.</div>
+          <div>
+            <div className={styles.form_container} id="register">
+              <form
+                className={styles.form}
+                onSubmit={handleSubmit}
+                encType="multipart/form-data"
+                method="post"
+              >
+                <label htmlFor="name" className={styles.inputLabels}>
+                  {" "}
+                  Name{" "}
+                </label>
+                <input
                   required={true}
+                  placeholder="Your Name"
+                  name="name"
+                  id="name"
+                  type="text"
                   onChange={handleChange}
-                  className={styles.mySelectArrow}
-                  defaultValue=""
-                >
-                  <option value="" disabled defaultValue hidden>
-                    Select your option
-                  </option>
-                  <option value="Computer_Science_Engineering">
-                    Computer Science Engineering
-                  </option>
-                  <option value="Information_Technology">
-                    Information Technology
-                  </option>
-                  <option value="Electronics">Electronics</option>
-                  <option value="Electrical">Electrical</option>
-                  <option value="Civil">Civil</option>
-                  <option value="Mechanical">Mechanical</option>
-                </select>
-              </div>
+                />
+                <label htmlFor="email" className={styles.inputLabels}>
+                  {" "}
+                  Email ID{" "}
+                </label>
+                <input
+                  required={true}
+                  placeholder="Your Email"
+                  name="email"
+                  id="email"
+                  type="email"
+                  onChange={handleChange}
+                />
+                <label htmlFor="phone" className={styles.inputLabels}>
+                  {" "}
+                  Phone Number{" "}
+                </label>
+                <input
+                  required={true}
+                  placeholder="Your Phone Number"
+                  minLength={10}
+                  maxLength={10}
+                  name="phone"
+                  id="phone"
+                  type="tel"
+                  onChange={handleChange}
+                />
 
-              <label htmlFor="reason" className={styles.inputLabels}>
-                {" "}
-                Why do you want to join WLUG ?{" "}
-              </label>
-              <input
-                required={true}
-                placeholder="Reasons"
-                name="reason"
-                id="reason"
-                type="text"
-                onChange={handleChange}
-              />
+                <label htmlFor="branch" className={styles.inputLabels}>
+                  {" "}
+                  Branch{" "}
+                </label>
+                <br />
 
-              <label htmlFor="photoUpload" className={styles.inputLabels}>
-                {" "}
-                Upload your Photo{" "}
-              </label>
-              <input
-                required={true}
-                name="photoUpload"
-                id="photoUpload"
-                type="file"
-                accept=".jpg, .png, .jpeg"
-                onChange={handleChange}
-              />
+                <div className={styles.selectdropdown}>
+                  <select
+                    id="branch"
+                    name="branch"
+                    required={true}
+                    onChange={handleChange}
+                    className={styles.mySelectArrow}
+                    defaultValue=""
+                  >
+                    <option value="" disabled defaultValue hidden>
+                      Select your option
+                    </option>
+                    <option value="Computer_Science_Engineering">
+                      Computer Science Engineering
+                    </option>
+                    <option value="Information_Technology">
+                      Information Technology
+                    </option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Civil">Civil</option>
+                    <option value="Mechanical">Mechanical</option>
+                  </select>
+                </div>
 
-              <label htmlFor="resumeUpload" className={styles.inputLabels}>
-                {" "}
-                Upload your Resume (.pdf File only){" "}
-              </label>
-              <input
-                required={true}
-                name="resumeUpload"
-                id="resumeUpload"
-                type="file"
-                accept=".pdf"
-                onChange={handleChange}
-              />
+                <label htmlFor="reason" className={styles.inputLabels}>
+                  {" "}
+                  Why do you want to join WLUG ?{" "}
+                </label>
+                <input
+                  required={true}
+                  placeholder="Reasons"
+                  name="reason"
+                  id="reason"
+                  type="text"
+                  onChange={handleChange}
+                />
 
-              <div className={styles.submitSection}>
-                {!isLoading && (
-                  <div className={styles.submitButton}>
-                    <input
-                      type="submit"
-                      defaultValue="REGISTER"
-                      className="button"
-                      value="REGISTER"
-                    />
-                  </div>
-                )}
-                {/* {isLoading && (
-                                <div className={styles.submitButton}>
-                                    <ThreeDots
-                                        height="80"
-                                        width="80"
-                                        radius="9"
-                                        color="#4fa94d"
-                                        ariaLabel="three-dots-loading"
-                                        wrapperStyle={{}}
-                                        wrapperClassName=""
-                                        visible={true}
-                                    />
-                                </div>
-                            )} */}
-                {isLoading && (
-                  <div className={styles.submitButton} id="loader">
-                    <InfinitySpin width="100" color="#ffaa00" />
-                  </div>
-                )}
-              </div>
-            </form>
+                <label htmlFor="photoUpload" className={styles.inputLabels}>
+                  {" "}
+                  Upload your Photo{" "}
+                </label>
+                <input
+                  required={true}
+                  name="photoUpload"
+                  id="photoUpload"
+                  type="file"
+                  accept=".jpg, .png, .jpeg"
+                  onChange={handleChange}
+                />
+
+                <label htmlFor="resumeUpload" className={styles.inputLabels}>
+                  {" "}
+                  Upload your Resume (.pdf File only){" "}
+                </label>
+                <input
+                  required={true}
+                  name="resumeUpload"
+                  id="resumeUpload"
+                  type="file"
+                  accept=".pdf"
+                  onChange={handleChange}
+                />
+
+                <div className={styles.submitSection}>
+                  {!isLoading && (
+                    <div className={styles.submitButton}>
+                      <input
+                        type="submit"
+                        defaultValue="Apply Now"
+                        className="button"
+                        value="Apply Now"
+                      />
+                    </div>
+                  )}
+                  {/* {isLoading && (
+                          <div className={styles.submitButton}>
+                              <ThreeDots
+                                  height="80"
+                                  width="80"
+                                  radius="9"
+                                  color="#4fa94d"
+                                  ariaLabel="three-dots-loading"
+                                  wrapperStyle={{}}
+                                  wrapperClassName=""
+                                  visible={true}
+                              />
+                          </div>
+                      )} */}
+                  {isLoading && (
+                    <div className={styles.submitButton} id="loader">
+                      <InfinitySpin width="100" color="#ffaa00" />
+                    </div>
+                  )}
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
