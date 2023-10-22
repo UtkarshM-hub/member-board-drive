@@ -35,43 +35,52 @@ const Register = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // setIsLoading(true);
 
     const { name, email, phone, branch, reason, photoUpload, resumeUpload } =
       formData;
-    console.log(photoUpload.size);
+
+    const photoUploadExt = photoUpload.name.split(".").pop().toString();
+
+    if (
+      photoUploadExt !== `jpg` &&
+      photoUploadExt !== `png` &&
+      photoUploadExt !== `jpeg`
+    ) {
+      sendAlert({
+        title: "Upload Image file only!",
+        buttonText: "OK",
+        imageUrl: "https://i.ibb.co/pzbNyjQ/image.png",
+      });
+
+      return false;
+    }
+
+    if (resumeUpload.name.split(".").pop() != "pdf") {
+      sendAlert({
+        title: "Upload PDF file only!",
+        buttonText: "OK",
+        imageUrl: "https://i.ibb.co/4SJdCkt/pdf.png",
+      });
+
+      return false;
+    }
 
     if (photoUpload.size > 1000000) {
-      swal.fire({
+      sendAlert({
         title: "Photo size too large!",
+        buttonText: "OK",
         imageUrl: "https://i.ibb.co/zfrXVzB/large.png",
-        imageHeight: 200,
-        imageWidth: 200,
-        confirmButtonColor: "#3085d6",
-        confirmButtonText: "OK",
-        animation: "true",
-        customClass: {
-          popup: "animated fadeInDown faster",
-          confirmButton: "animated bounceIn faster",
-          cancelButton: "animated bounceIn faster",
-        },
       });
+
       return false;
-    } else if (resumeUpload.size > 2000000) {
-      swal.fire({
+    }
+    if (resumeUpload.size > 2000000) {
+      sendAlert({
         title: "Resume size too large!",
+        buttonText: "OK",
         imageUrl: "https://i.ibb.co/zfrXVzB/large.png",
-        imageHeight: 200,
-        imageWidth: 200,
-        confirmButtonColor: "#3085d6",
-        confirmButtonText: "OK",
-        animation: "true",
-        customClass: {
-          popup: "animated fadeInDown faster",
-          confirmButton: "animated bounceIn faster",
-          cancelButton: "animated bounceIn faster",
-        },
       });
+
       return false;
     }
 
@@ -81,8 +90,6 @@ const Register = () => {
     formDataToSend.append("phone", phone);
     formDataToSend.append("branch", branch);
     formDataToSend.append("reason", reason);
-    // formDataToSend.append("photoUpload", photoUpload);
-    // formDataToSend.append("resumeUpload", resumeUpload);
 
     setIsLoading(true);
 
@@ -107,18 +114,11 @@ const Register = () => {
 
           if (upload_Response.status === 201) {
             handleReset(event);
-            swal.fire({
-              title: "Registered Successfully!! Check email for confirmation.",
-              imageHeight: 200,
-              confirmButtonColor: "#3085d6",
-              confirmButtonText: "Continue",
+            sendAlert({
+              title: "Registered Successfully!",
+              buttonText: "Continue",
               imageUrl:
                 "https://res.cloudinary.com/dizrxbb27/image/upload/v1681066882/TechnoTweet/hurray_uptaef.png",
-              customClass: {
-                popup: "animated fadeInDown faster",
-                confirmButton: "animated bounceIn faster",
-                cancelButton: "animated bounceIn faster",
-              },
             });
           }
         } catch (err) {}
@@ -130,56 +130,20 @@ const Register = () => {
         err.response.data.success === "false" &&
         err.response.data.message === "Email Already Registered"
       ) {
-        swal.fire({
-          title: "Email already registered!!! Try using different email.",
+        sendAlert({
+          title: "Email already registered! Try using different email.",
+          buttonText: "OK",
           imageUrl:
             "https://res.cloudinary.com/dizrxbb27/image/upload/v1681066890/TechnoTweet/oops_qo58xk.png",
-          imageHeight: 200,
-          imageWidth: 200,
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "OK",
-          animation: "true",
-          customClass: {
-            popup: "animated fadeInDown faster",
-            confirmButton: "animated bounceIn faster",
-            cancelButton: "animated bounceIn faster",
-          },
         });
+
         return false;
-      } else if (
-        err.response.data.success === "false" &&
-        err.response.data.message === "Invalid mobile number"
-      ) {
-        swal.fire({
-          title: "Invalid mobile number",
-          imageUrl:
-            "https://res.cloudinary.com/dizrxbb27/image/upload/v1681066890/TechnoTweet/oops_qo58xk.png",
-          imageHeight: 300,
-          imageWidth: 200,
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "OK",
-          animation: "true",
-          customClass: {
-            popup: "animated fadeInDown faster",
-            confirmButton: "animated bounceIn faster",
-            cancelButton: "animated bounceIn faster",
-          },
-        });
       } else {
-        swal.fire({
+        sendAlert({
           title: "Something went wrong!! Try again after some time.",
+          buttonText: "OK",
           imageUrl:
             "https://res.cloudinary.com/dizrxbb27/image/upload/v1681066890/TechnoTweet/oops_qo58xk.png",
-          imageHeight: 300,
-          imageWidth: 200,
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "OK",
-          animation: "true",
-          customClass: {
-            popup: "animated fadeInDown faster",
-            confirmButton: "animated bounceIn faster",
-            cancelButton: "animated bounceIn faster",
-          },
         });
       }
     } finally {
@@ -190,6 +154,29 @@ const Register = () => {
   const handleReset = (event) => {
     event.preventDefault();
     event.target.reset();
+  };
+
+  const sendAlert = ({
+    title,
+    buttonText,
+    imageUrl,
+    imageHeight = 200,
+    imageWidth = 200,
+  }) => {
+    swal.fire({
+      title: title,
+      imageUrl: imageUrl,
+      imageHeight: imageHeight,
+      imageWidth: imageWidth,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: buttonText,
+      animation: "true",
+      customClass: {
+        popup: "animated fadeInDown faster",
+        confirmButton: "animated bounceIn faster",
+        cancelButton: "animated bounceIn faster",
+      },
+    });
   };
 
   return (
@@ -255,7 +242,7 @@ const Register = () => {
                   />
                   <label htmlFor="phone" className={styles.inputLabels}>
                     {" "}
-                    Phone Number{" "}
+                    Contact number{" "}
                   </label>
                   <input
                     required={true}
@@ -314,7 +301,7 @@ const Register = () => {
 
                   <label htmlFor="photoUpload" className={styles.inputLabels}>
                     {" "}
-                    Upload your Photo{" "}
+                    Upload your photo{" "}
                   </label>
                   <input
                     required={true}
@@ -327,7 +314,7 @@ const Register = () => {
 
                   <label htmlFor="resumeUpload" className={styles.inputLabels}>
                     {" "}
-                    Upload your Resume (.pdf File only){" "}
+                    Upload your resume (.pdf File only){" "}
                   </label>
                   <input
                     required={true}
@@ -340,29 +327,23 @@ const Register = () => {
 
                   <div className={styles.submitSection}>
                     {!isLoading && (
-                      <div className={styles.submitButton}>
-                        <input
-                          type="submit"
-                          defaultValue="Apply Now"
-                          className="button"
-                          value="Apply Now"
-                        />
-                      </div>
+                      <button
+                        type="submit"
+                        className={`${styles.button_slide} ${styles.slide_right}`}
+                      >
+                        APPLY
+                      </button>
+                      // <div
+                      //   className={`${styles.button_slide} ${styles.slide_right}`}
+                      // >
+                      //   <input
+                      //     type="submit"
+                      //     defaultValue="Apply Now"
+                      //     className="button"
+                      //     value="Apply Now"
+                      //   />
+                      // </div>
                     )}
-                    {/* {isLoading && (
-                          <div className={styles.submitButton}>
-                              <ThreeDots
-                                  height="80"
-                                  width="80"
-                                  radius="9"
-                                  color="#4fa94d"
-                                  ariaLabel="three-dots-loading"
-                                  wrapperStyle={{}}
-                                  wrapperClassName=""
-                                  visible={true}
-                              />
-                          </div>
-                      )} */}
                     {isLoading && (
                       <div className={styles.submitButton} id="loader">
                         <InfinitySpin width="100" color="#ffaa00" />

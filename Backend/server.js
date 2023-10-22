@@ -110,14 +110,13 @@ app.post("/createUser", async (req, res) => {
         });
 
         const postdata = await User.save();
-        // console.log(postdata._id.toString());
 
-        try {
-            sendEmail(User.email, "Your Registration was successfull!!", emailMessage());
-        } catch (error) {
-            console.log(error);
-        }
-        // console.log(postdata);
+        // try {
+        //     sendEmail(User.email, "Your Registration was successfull!!", emailMessage());
+        // } catch (error) {
+        //     console.log(error);
+        // }
+
         return res
             .status(201)
             .json({
