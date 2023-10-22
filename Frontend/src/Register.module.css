@@ -208,24 +208,6 @@ input[type="tel"] {
   background-color: var(--color-background);
 }
 
-/* input[type="submit"] {
-  width: 100%;
-  height: 3rem !important;
-  background-color: var(--color-primary);
-  color: var(--color-background);
-  font-weight: 600;
-  font-size: 1.2rem !important;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-} */
-
-input[type="submit"] {
-  /* border: none; */
-  /* color: transparent; */
-}
-
 .button_slide {
   width: 100%;
   height: 3rem !important;
@@ -296,6 +278,7 @@ select {
 
   form {
     width: 100%;
+    margin: 5px;
   }
 
   .inputLabels {
