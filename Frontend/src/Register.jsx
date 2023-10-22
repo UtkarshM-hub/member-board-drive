@@ -67,7 +67,7 @@ const Register = () => {
 
     if (photoUpload.size > 1000000) {
       sendAlert({
-        title: "Photo size too large!",
+        title: "Photo size too large! Max Size 1MB",
         buttonText: "OK",
         imageUrl: "https://i.ibb.co/zfrXVzB/large.png",
       });
@@ -76,7 +76,7 @@ const Register = () => {
     }
     if (resumeUpload.size > 2000000) {
       sendAlert({
-        title: "Resume size too large!",
+        title: "Resume size too large! Max Size 2MB",
         buttonText: "OK",
         imageUrl: "https://i.ibb.co/zfrXVzB/large.png",
       });
@@ -314,7 +314,7 @@ const Register = () => {
 
                   <label htmlFor="resumeUpload" className={styles.inputLabels}>
                     {" "}
-                    Upload your resume (.pdf File only){" "}
+                    Upload your resume (.pdf file only){" "}
                   </label>
                   <input
                     required={true}
