@@ -345,8 +345,22 @@ const Register = () => {
                       // </div>
                     )}
                     {isLoading && (
-                      <div className={styles.submitButton} id="loader">
-                        <InfinitySpin width="100" color="#ffaa00" />
+                      <div className={styles.infinityLoop} id="loader">
+                        <ThreeDots
+                          height="80"
+                          width="80"
+                          // radius="9"
+                          color="var(--color-primary)"
+                          ariaLabel="three-dots-loading"
+                          wrapperStyle={{}}
+                          wrapperClassName=""
+                          visible={true}
+                        />
+                        {/* <InfinitySpin
+                          width="200"
+                          height
+                          color="var(--color-primary)"
+                        /> */}
                       </div>
                     )}
                   </div>

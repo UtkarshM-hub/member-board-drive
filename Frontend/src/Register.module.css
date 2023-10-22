@@ -195,8 +195,17 @@ input[type="tel"] {
   caret-color: var(--color-primary);
 }
 
-.submitButton {
-  padding: 1rem 0;
+.infinityLoop {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--color-primary);
+  height: 3rem !important;
+  border-radius: 40px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  background-color: var(--color-background);
 }
 
 /* input[type="submit"] {
@@ -223,7 +232,7 @@ input[type="submit"] {
   color: var(--color-primary);
   border: 2px solid var(--color-primary);
   border-radius: 40px;
-  padding: 10px;
+  /* padding: 10px; */
   display: inline-block;
   font-weight: 400;
   font-size: 1.2rem !important;
