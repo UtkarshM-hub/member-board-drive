@@ -105,11 +105,15 @@ function Footer() {
         </div>
 
         <div className={`${styles.navli} ${styles.padding1rem}`}>
-          <a onClick={goToHome}>Home</a>
+          {/* <a href="https://www.wcewlug.org/" target="_blank" rel="noreferrer">
+            Home
+          </a> */}
+          <a href="#" onClick={goToRegister}>
+            Register
+          </a>
           <a href="https://www.wcewlug.org/" target="_blank" rel="noreferrer">
             About Us
           </a>
-          <a onClick={goToRegister}>Register</a>
         </div>
 
         <div className={`${styles.policies} ${styles.padding1rem}`}>

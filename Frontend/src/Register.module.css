@@ -41,6 +41,7 @@
   transition: transform 0.3s ease;
   transform: scale(1);
   margin-left: 50px;
+  /* Adjust the color stops and transparency as desired */
 }
 
 .side_tux:hover {
@@ -170,6 +171,7 @@ input::file-selector-button {
 input[type="file"]::file-selector-button:hover {
   background-color: var(--color-primary);
   color: black;
+  cursor: pointer;
 }
 
 input:-webkit-autofill::first-line {
